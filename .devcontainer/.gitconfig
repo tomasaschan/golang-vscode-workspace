@@ -1,0 +1,18 @@
+[alias]
+  s = status --short
+  diffc = diff --cached
+  lg = log --oneline --decoreate --graph --all --topo-order
+[user]
+  name = Tomas Aschan
+  email = 1550920+tomasaschan@users.noreply.github.com
+[core]
+  editor = code --wait
+  autocrlf=true
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE

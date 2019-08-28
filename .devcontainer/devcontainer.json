@@ -1,0 +1,24 @@
+{
+  "name": "golang",
+  "dockerFile": "Dockerfile",
+  "settings": {
+    "go.gopath": "/go",
+    "go.inferGopath": true,
+    "go.useLanguageServer": true
+  },
+  "workspaceMount": "src=D:\\OSS\\golang,target=/go/src,type=bind,consistency=cached",
+  "workspaceFolder": "/go/src",
+  "runArgs": [
+    "-u",
+    "vscode",
+    "-v",
+    "golang-vscode-server-data:/home/vscode/.vscode-server/data",
+    "-v",
+    "golang-vscode-server-bin:/home/vscode/.vscode-server/bin",
+    "-v",
+    "${env:HOME}${env:USERPROFILE}/.ssh:/home/vscode/.ssh-localhost:ro"
+  ],
+  "extensions": [
+    "ms-vscode.go"
+  ]
+}

@@ -1,0 +1,2 @@
+# Ignore source folders; they will be handled in their own git repositories.
+github.com

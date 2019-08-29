@@ -80,9 +80,12 @@ RUN  groupadd --gid $USER_GID $USERNAME \
   && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
   && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Source profile scripts from ~/.bashrc.d
 RUN mkdir -p /home/vscode/.bashrc.d && echo "\n\nif [ -d ~/.bashrc.d ]; then\n  for rc in ~/.bashrc.d/*; do\n    . \$rc\n  done\nfi" >> /home/vscode/.bashrc
 
+# Add gitconfig
 ADD .gitconfig /home/vscode/
+# Add scripts to configure and connect to ssh-agent on startup
 ADD 00-config-ssh-keys.sh /home/vscode/.bashrc.d/
 ADD 01-config-ssh-agent.sh /home/vscode/.bashrc.d/
 

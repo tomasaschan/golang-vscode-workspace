@@ -22,6 +22,12 @@ This is that attempt.
 1. (Optional) If you don't like to be in my timezone (`Europe/Stockholm`),
    change the argument at the top of the Dockerfile.
 
+1. (Optional) If you're on linux and you're not running under the default user
+   id/gid (1000), you might want to change the arguments for those as well, to
+   avoid permissions issues with bind mounts.  
+   **Note:** if you change the user name, remember to change the `runArg` in the
+   `.devcontainer/devcontainer.json` declaration as well.
+
 1. Open the workspace in VS Code. If you didn't already, VS Code should prompt
    you to re-open the workspace in Remote development instead.
 

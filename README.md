@@ -39,3 +39,15 @@ This is that attempt.
    `.gitignore` file (in the same way as `github.com` is already there).
 
 [2]: https://github.com/go-training/helloworld
+
+## Features
+
+- Based on the `golang` image, so gives you the default setup for Golang
+  development
+
+- Runs under a non-root user (by default called `vscode`) inside the container
+
+- Supports Docker and Docker Compose, by mounting the host Docker socket
+
+- Includes your local `~/.ssh` config, letting you use SSH communication with
+  e.g. git remotes

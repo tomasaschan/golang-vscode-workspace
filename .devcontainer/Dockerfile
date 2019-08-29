@@ -4,6 +4,8 @@
 # https://github.com/microsoft/vscode-remote-try-go/blob/master/.devcontainer/Dockerfile
 #-------------------------------------------------------------------------------------------------------------
 
+ARG TIMEZONE='Europe/Stockholm'
+
 FROM golang:latest
 
 # Avoid warnings by switching to noninteractive
@@ -19,7 +21,7 @@ RUN apt-get update \
   && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
   #
   # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
-  && apt-get -y install git procps lsb-release \
+  && apt-get -y install git procps lsb-release locales \
   #
   # Install sudo (config further down)
   && apt-get install -y sudo \
@@ -74,3 +76,11 @@ RUN mkdir -p /home/vscode/.bashrc.d && echo "\n\nif [ -d ~/.bashrc.d ]; then\n  
 ADD .gitconfig /home/vscode/
 ADD 00-config-ssh-keys.sh /home/vscode/.bashrc.d/
 ADD 01-config-ssh-agent.sh /home/vscode/.bashrc.d/
+
+# Configure locales
+RUN echo ${TIMEZONE} > /etc/timezone \
+  && dpkg-reconfigure --frontend=noninteractive tzdata \
+  && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+  && echo 'LANG="en_US.UTF-8"' > /etc/default/locale \
+  && dpkg-reconfigure --frontend=noninteractive locales \ 
+  && update-locale LANG=en_US.UTF-8

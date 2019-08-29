@@ -16,7 +16,9 @@
     "-v",
     "golang-vscode-server-bin:/home/vscode/.vscode-server/bin",
     "-v",
-    "${env:HOME}${env:USERPROFILE}/.ssh:/home/vscode/.ssh-localhost:ro"
+    "${env:HOME}${env:USERPROFILE}/.ssh:/home/vscode/.ssh-localhost:ro",
+    "-v",
+    "/var/run/docker.sock:/var/run/docker.sock"
   ],
   "extensions": [
     "ms-vscode.go"
